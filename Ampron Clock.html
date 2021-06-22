@@ -44,15 +44,30 @@ p.customfont {
 			function updateClock() {
 				var d = new Date();
 				var s = "";
-				s += (10 > d.getHours  () ? "0" : "") + d.getHours  () + ":";
+				var hours=d.getHours();
+				var mid='AM';
+				
+                                //var hours=(hours+24-2)%24; 
+				if(hours==0)
+				{
+				hours=12;
+				}
+				else if(hours>12)
+				{
+				hours=hours%12;
+				mid='PM';
+				}
+				
+				s += (10 > hours ? "0" : "") + hours + ":";
 				s += (10 > d.getMinutes() ? "0" : "") + d.getMinutes() + ":";
 				s += (10 > d.getSeconds() ? "0" : "") + d.getSeconds();
-                                const date = new Date();
-
+                                
+				s+=' <span style=" font-size:150px;">'+mid+'</span>';
 const day = d.getDate();
 const month = d.getMonth() + 1;
 const year = d.getFullYear();
-				textElem.innerHTML = s+"<br><br>"+day+"-"+month+"-"+year;
+				textElem.innerHTML = s+
+"<br><br>"+day+"-"+month+"-"+year;
 
 				setTimeout(updateClock, 1000 - d.getTime() % 1000 + 20);
 			}
