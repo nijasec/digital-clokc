@@ -47,7 +47,13 @@ p.customfont {
 				s += (10 > d.getHours  () ? "0" : "") + d.getHours  () + ":";
 				s += (10 > d.getMinutes() ? "0" : "") + d.getMinutes() + ":";
 				s += (10 > d.getSeconds() ? "0" : "") + d.getSeconds();
-				textElem.textContent = s;
+                                const date = new Date();
+
+const day = d.getDate();
+const month = d.getMonth() + 1;
+const year = d.getFullYear();
+				textElem.innerHTML = s+"<br><br>"+day+"-"+month+"-"+year;
+
 				setTimeout(updateClock, 1000 - d.getTime() % 1000 + 20);
 			}
 			
